@@ -16,7 +16,7 @@ There are no options for the bot just press save.
 
 ![image](https://user-images.githubusercontent.com/125089137/219783499-f3f7fe63-41cd-47b8-af30-adf0b6323438.png)
 
-Now everytime you press play the bot will take a screenshot of the 3 main screen spaces we call to in bots. self.win._gameview, self.win.minimap, and self.win.control panel. The bot will only automatically stop. 
+Now everytime you press play the bot will take a screenshot of the 3 main screen spaces we call to in bots. self.win._gameview, self.win.minimap, and self.win.control panel. The bot will automatically stop once the screen shots are made, This should only take less than a second.  
 
 ![image](https://user-images.githubusercontent.com/125089137/219784111-ada6f825-3579-49dc-ac20-cc852a0ca12f.png)
 
