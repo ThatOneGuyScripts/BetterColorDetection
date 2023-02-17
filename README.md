@@ -54,4 +54,26 @@ banks = self.find_color(self.win.game_view, "orange")
 ```
 
 
-This does not replace any functions in OSBC and leaves the orignal calls and color detection system in place.
+This does not replace any functions in OSBC and leaves the orignal calls and color detection system in place. Heres an example of it in action. 
+
+Original screenshot taken by OSBC
+
+![image](https://user-images.githubusercontent.com/125089137/219789729-929e20dd-a005-4bd3-8d85-1410e69d9845.png)
+
+Original screenshot processed with default color detection using updated RGB values to match the HSV values BCD uses.
+
+![image](https://user-images.githubusercontent.com/125089137/219790240-45c3fcee-7548-4cbe-b16d-1eaa14a9e3e9.png)
+
+Orginal screenshot processed with BCD
+
+![image](https://user-images.githubusercontent.com/125089137/219790539-d1341c81-28ff-42fa-aaca-be39ceef81a0.png)
+
+Performance 
+
+![image](https://user-images.githubusercontent.com/125089137/219790745-1ecae197-474c-4da8-b55c-48841496e6b5.png)
+
+
+
+
+
+
