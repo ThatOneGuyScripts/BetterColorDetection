@@ -1,7 +1,7 @@
 # BetterColorDetection
 This is my color detection and CV files for Kelltoms OSBC.
 
-Download files and merg them with your OSRS-Bot-COLOR-main or unpack them manually. 
+Download files and merge them with your OSRS-Bot-COLOR-main or unpack them manually. 
 
 
 This is a two part project part one in the screenshot bot. Make sure to initialize the bot in your OSRS init.py
