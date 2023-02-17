@@ -157,9 +157,6 @@ class bcd2view(customtkinter.CTkFrame):
         self.images_frame = customtkinter.CTkFrame(master=self.main_frame)
         self.images_frame.pack(side = "left", anchor="e", padx=10,pady =10,expand=True,fill="both")
         
-        self.save_color_button = customtkinter.CTkButton(master=self.images_frame,height=64, text="Load Screenshot", command=self.imageUpdater)
-        self.save_color_button.pack(side="top", padx=10, pady=5)
-        
         ################################################################################################################
         #screenshot frame
         self.screenshot_frame = customtkinter.CTkFrame(master=self.images_frame)
