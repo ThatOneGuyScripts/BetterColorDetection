@@ -53,3 +53,5 @@ banks = self.get_all_tagged_in_rect(self.win.game_view, clr.OFF_ORANGE)
 banks = self.find_color(self.win.game_view, "orange")
 ```
 
+
+This does not replace any functions in OSBC and leaves the orignal calls and color detection system in place.
