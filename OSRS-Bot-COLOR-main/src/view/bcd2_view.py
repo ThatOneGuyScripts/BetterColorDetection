@@ -11,7 +11,7 @@ class bcd2view(customtkinter.CTkFrame):
     H_minval = 0
     S_minval = 0
     V_minval = 0
-    H_maxval = 255
+    H_maxval = 179
     S_maxval = 255
     V_maxval = 255
     minimap = False
@@ -272,31 +272,33 @@ class bcd2view(customtkinter.CTkFrame):
                 screenshot_filename = "screenshotcontrolpanel.png"
             else:
                 screenshot_filename = "splashscreen.png"
-            image = Image.open(f"{image_path}/{screenshot_filename}")
+            image = cv2.imread(f"{image_path}/{screenshot_filename}")
             self.image_to_load = image
         else:
             # Use the image data already in memory
             image = self.image_to_load
         
-        image_array = np.array(image)
         
         # Set minimum and maximum HSV values to display
         lower = np.array([self.H_minval, self.S_minval,self.V_minval])
         upper = np.array([self.H_maxval, self.S_maxval, self.V_maxval])
 
         # Convert to HSV format and color threshold
-        hsv = cv2.cvtColor(image_array, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(hsv, lower, upper)
-        result = cv2.bitwise_and(image_array, image_array, mask=mask)
+        result = cv2.bitwise_and(image, image, mask=mask)
 
         # Convert the OpenCV image to a PIL image
-        pil_image = Image.fromarray(result)
+        imageRGB = cv2.cvtColor(result, cv2.COLOR_BGR2RGB)
+        
+        pil_image = Image.fromarray(imageRGB)
 
         # Resize the PIL image to match the dimensions of the maskshot image
         pil_image = ImageOps.contain(pil_image,(420,800))
 
         # Create a PhotoImage from the resized PIL image
         self.image_to_display = ImageTk.PhotoImage(pil_image)
+ 
 
         # Add new screenshot label to screenshot_frame
         maskshotlabel_new = customtkinter.CTkLabel(master=self.mask_frame, image=self.image_to_display)
