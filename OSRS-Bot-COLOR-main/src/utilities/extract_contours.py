@@ -24,17 +24,23 @@ def extract_contours(image: cv2.Mat) -> List[RuneLiteObject]:
             black_copy = black_image.copy()
             cv2.drawContours(black_copy, contours, objects, (255, 255, 255), -1)
             x, y, width, height = cv2.boundingRect(contours[objects])
-            chunk_width = 50
-            chunk_height = 50
-            for i in range(0, height, chunk_height):
-                for j in range(0, width, chunk_width):
-                    sub_image = thresholded_image[y + i:y + i + chunk_height, x + j:x + j + chunk_width]
-                    if cv2.countNonZero(sub_image) > 0:
-                        x_offset = x + j
-                        y_offset = y + i
-                        sub_width = min(chunk_width, width - j)
-                        sub_height = min(chunk_height, height - i)
-                        center = [int(x_offset + (sub_width / 2)), int(y_offset + (sub_height / 2))]
-                        axis = np.column_stack((y_offset, x_offset))
-                        objs.append(RuneLiteObject(x_offset, x_offset + sub_width, y_offset, y_offset + sub_height, sub_width, sub_height, center, axis))
+            area = width * height
+            if area <= 125*125:
+                center = [int(x + (width / 2)), int(y + (height / 2))]
+                axis = np.column_stack((y, x))
+                objs.append(RuneLiteObject(x, x + width, y, y + height, width, height, center, axis))
+            else:
+                chunk_width = 50
+                chunk_height = 50
+                for i in range(0, height, chunk_height):
+                    for j in range(0, width, chunk_width):
+                        sub_image = thresholded_image[y + i:y + i + chunk_height, x + j:x + j + chunk_width]
+                        if cv2.countNonZero(sub_image) > 0:
+                            x_offset = x + j
+                            y_offset = y + i
+                            sub_width = min(chunk_width, width - j)
+                            sub_height = min(chunk_height, height - i)
+                            center = [int(x_offset + (sub_width / 2)), int(y_offset + (sub_height / 2))]
+                            axis = np.column_stack((y_offset, x_offset))
+                            objs.append(RuneLiteObject(x_offset, x_offset + sub_width, y_offset, y_offset + sub_height, sub_width, sub_height, center, axis))
     return objs or []
